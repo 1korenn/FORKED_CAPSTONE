@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class SideMenuData {
   final menu = const <MenuModel>[
     MenuModel(icon: Icons.home, title: 'Dashboard'),
-    MenuModel(icon: Icons.message, title: 'CHATS'),
+    MenuModel(icon: Icons.message, title: 'Test'),
     MenuModel(icon: Icons.settings, title: 'Settings'),
     MenuModel(icon: Icons.logout, title: 'SignOut'),
   ];

@@ -21,7 +21,7 @@ class DashboardScreen extends StatelessWidget {
             Card(
               child: Column(
                 children: <Widget>[
-                  Text('Moisture'),
+                  Text('test'),
                 ],
               ),
             ),

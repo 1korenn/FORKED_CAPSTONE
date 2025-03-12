@@ -16,7 +16,7 @@ class LineChartCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Steps Overview",
+            "24-Hour Overview",
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 20),
@@ -32,16 +32,12 @@ class LineChartCard extends StatelessWidget {
                   rightTitles: AxisTitles(
                     sideTitles: SideTitles(showTitles: false),
                   ),
-                  topTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
                   bottomTitles: AxisTitles(
                     sideTitles: SideTitles(
                       showTitles: true,
                       getTitlesWidget: (double value, TitleMeta meta) {
                         return data.bottomTitle[value.toInt()] != null
                             ? Container(
-                                
                                 child: Text(
                                     data.bottomTitle[value.toInt()].toString(),
                                     style: TextStyle(
@@ -61,7 +57,7 @@ class LineChartCard extends StatelessWidget {
                             : const SizedBox();
                       },
                       showTitles: true,
-                      interval: 1,
+                      interval: 20,
                       reservedSize: 40,
                     ),
                   ),
@@ -87,9 +83,9 @@ class LineChartCard extends StatelessWidget {
                   )
                 ],
                 minX: 0,
-                maxX: 120,
-                maxY: 105,
-                minY: -5,
+                maxX: 24,
+                maxY: 100,
+                minY: 0,
               ),
             ),
           ),
