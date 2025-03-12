@@ -44,7 +44,7 @@ class HeaderWidget extends StatelessWidget {
                 contentPadding: const EdgeInsets.symmetric(
                   vertical: 5,
                 ),
-                hintText: 'Search',
+                hintText: 'Ask AI',
                 prefixIcon: const Icon(
                   Icons.search,
                   color: Colors.grey,

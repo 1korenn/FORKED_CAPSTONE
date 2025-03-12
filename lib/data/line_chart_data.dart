@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 
 class LineData {
   final spots = const [
-    FlSpot(1.68, 21.04),
+    FlSpot(1.68, 2.04),
     FlSpot(2.84, 26.23),
     FlSpot(5.19, 19.82),
     FlSpot(6.01, 24.49),
@@ -36,37 +36,32 @@ class LineData {
     FlSpot(86.12, 69.45),
     FlSpot(90.06, 78.60),
     FlSpot(94.68, 46.05),
-    FlSpot(98.35, 42.80),
-    FlSpot(101.25, 53.05),
-    FlSpot(103.07, 46.06),
-    FlSpot(106.65, 42.31),
-    FlSpot(108.20, 32.64),
-    FlSpot(110.40, 45.14),
-    FlSpot(114.24, 53.27),
-    FlSpot(116.60, 42.13),
-    FlSpot(118.52, 57.60),
+    // FlSpot(98.35, 42.80),
+    // FlSpot(101.25, 53.05),
+    // FlSpot(103.07, 46.06),
+    // FlSpot(106.65, 42.31),
+    // FlSpot(108.20, 32.64),
+    // FlSpot(110.40, 45.14),
+    // FlSpot(114.24, 53.27),
+    // FlSpot(116.60, 42.13),
+    // FlSpot(118.52, 57.60),
   ];
 
   final leftTitle = {
     0: '0',
-    20: '2K',
-    40: '4K',
-    60: '6K',
-    80: '8K',
-    100: '10K'
+    20: '20',
+    40: '40',
+    60: '60',
+    80: '80',
+    100: '100'
   };
   final bottomTitle = {
-    0: 'Jan',
-    10: 'Feb',
-    20: 'Mar',
-    30: 'Apr',
-    40: 'May',
-    50: 'Jun',
-    60: 'Jul',
-    70: 'Aug',
-    80: 'Sep',
-    90: 'Oct',
-    100: 'Nov',
-    110: 'Dec',
+    0: "Monday",
+    15: "Tuesday",
+    30: "Wednesday",
+    45: "Thursday",
+    60: "Friday",
+    75: "Saturday",
+    90: "Sunday"
   };
 }

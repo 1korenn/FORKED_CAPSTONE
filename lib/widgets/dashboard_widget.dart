@@ -19,7 +19,7 @@ class DashboardWidget extends StatelessWidget {
             const SizedBox(height: 18),
             const HeaderWidget(),
             const SizedBox(height: 18),
-            const ActivityDetailsCard(),
+            Center(child: const ActivityDetailsCard()),
             const SizedBox(height: 18),
             const LineChartCard(),
             const SizedBox(height: 18),
