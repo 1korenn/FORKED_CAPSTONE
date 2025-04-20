@@ -1,6 +1,6 @@
-import 'package:fitness_dashboard_ui/const/constant.dart';
-import 'package:fitness_dashboard_ui/data/line_chart_data.dart';
-import 'package:fitness_dashboard_ui/widgets/custom_card_widget.dart';
+import 'package:capstone_project/const/constant.dart';
+import 'package:capstone_project/data/line_chart_data.dart';
+import 'package:capstone_project/widgets/custom_card_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

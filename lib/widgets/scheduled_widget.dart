@@ -1,5 +1,6 @@
-import 'package:fitness_dashboard_ui/data/schedule_task_data.dart';
-import 'package:fitness_dashboard_ui/widgets/custom_card_widget.dart';
+
+import 'package:capstone_project/data/schedule_task_data.dart';
+import 'package:capstone_project/widgets/custom_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class Scheduled extends StatelessWidget {
