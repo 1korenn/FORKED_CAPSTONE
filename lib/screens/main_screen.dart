@@ -1,7 +1,8 @@
-import 'package:fitness_dashboard_ui/util/responsive.dart';
-import 'package:fitness_dashboard_ui/widgets/dashboard_widget.dart';
-import 'package:fitness_dashboard_ui/widgets/side_menu_widget.dart';
-import 'package:fitness_dashboard_ui/widgets/summary_widget.dart';
+
+import 'package:capstone_project/util/responsive.dart';
+import 'package:capstone_project/widgets/dashboard_widget.dart';
+import 'package:capstone_project/widgets/side_menu_widget.dart';
+import 'package:capstone_project/widgets/summary_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {

@@ -1,9 +1,10 @@
-import 'package:fitness_dashboard_ui/util/responsive.dart';
-import 'package:fitness_dashboard_ui/widgets/activity_details_card.dart';
-import 'package:fitness_dashboard_ui/widgets/bar_graph_widget.dart';
-import 'package:fitness_dashboard_ui/widgets/header_widget.dart';
-import 'package:fitness_dashboard_ui/widgets/line_chart_card.dart';
-import 'package:fitness_dashboard_ui/widgets/summary_widget.dart';
+
+import 'package:capstone_project/util/responsive.dart';
+import 'package:capstone_project/widgets/activity_details_card.dart';
+import 'package:capstone_project/widgets/bar_graph_widget.dart';
+import 'package:capstone_project/widgets/header_widget.dart';
+import 'package:capstone_project/widgets/line_chart_card.dart';
+import 'package:capstone_project/widgets/summary_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashboardWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class DashboardWidget extends StatelessWidget {
             const SizedBox(height: 18),
             const HeaderWidget(),
             const SizedBox(height: 18),
-            const ActivityDetailsCard(),
+            Center(child: const ActivityDetailsCard()),
             const SizedBox(height: 18),
             const LineChartCard(),
             const SizedBox(height: 18),

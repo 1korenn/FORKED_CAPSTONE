@@ -1,4 +1,5 @@
-import 'package:fitness_dashboard_ui/widgets/custom_card_widget.dart';
+import 'package:capstone_project/widgets/custom_card_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class SummaryDetails extends StatelessWidget {
@@ -11,10 +12,9 @@ class SummaryDetails extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          buildDetails('Cal', '305'),
-          buildDetails('Steps', '10983'),
-          buildDetails('Distance', '7km'),
-          buildDetails('Sleep', '7hr'),
+          buildDetails('sensor value', '305'),
+          buildDetails('sensor value', '10983'),
+          buildDetails('sensor value', '7km'),
         ],
       ),
     );

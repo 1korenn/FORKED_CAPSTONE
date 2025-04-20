@@ -1,13 +1,14 @@
-import 'package:fitness_dashboard_ui/model/health_model.dart';
+import 'package:capstone_project/model/health_model.dart';
+
 
 class HealthDetails {
   final healthData = const [
     HealthModel(
-        icon: 'assets/icons/burn.png', value: "305", title: "Calories burned"),
+        icon: 'assets/icons/burn.png', value: "69", title: "PH Level"),
     HealthModel(
-        icon: 'assets/icons/steps.png', value: "10,983", title: "Steps"),
+        icon: 'assets/icons/steps.png', value: "69", title: "Moisture"),
     HealthModel(
-        icon: 'assets/icons/distance.png', value: "7km", title: "Distance"),
-    HealthModel(icon: 'assets/icons/sleep.png', value: "7h48m", title: "Sleep"),
+        icon: 'assets/icons/distance.png', value: "69", title: "Heat"),
+    
   ];
 }

@@ -1,5 +1,10 @@
 import 'package:fitness_dashboard_ui/const/constant.dart';
 import 'package:fitness_dashboard_ui/data/side_menu_data.dart';
+ // Ensure this import is correct
+import 'package:fitness_dashboard_ui/screens/main_screen.dart';
+import 'package:fitness_dashboard_ui/screens/test_screen.dart'; // Add this import
+import 'package:fitness_dashboard_ui/screens/settings_screen.dart'; // Add this import
+import 'package:fitness_dashboard_ui/ui/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 class SideMenuWidget extends StatefulWidget {
@@ -38,9 +43,12 @@ class _SideMenuWidgetState extends State<SideMenuWidget> {
         color: isSelected ? selectionColor : Colors.transparent,
       ),
       child: InkWell(
-        onTap: () => setState(() {
-          selectedIndex = index;
-        }),
+        onTap: () {
+          setState(() {
+            selectedIndex = index;
+          });
+          navigateToScreen(context, data.menu[index].title);
+        },
         child: Row(
           children: [
             Padding(
@@ -61,6 +69,32 @@ class _SideMenuWidgetState extends State<SideMenuWidget> {
           ],
         ),
       ),
+    );
+  }
+
+  void navigateToScreen(BuildContext context, String title) {
+    Widget screen;
+    switch (title) {
+      case 'Dashboard':
+        screen = DashboardScreen();
+        break;
+      case 'Test':
+        screen = TestScreen();
+        break;
+      case 'Settings':
+        screen = SettingsScreen();
+        break;
+      case 'SignOut':
+        // Handle sign out logic here
+        return;
+      default:
+        screen = MainScreen(); // Default screen if no match is found
+        break;
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
     );
   }
 }
