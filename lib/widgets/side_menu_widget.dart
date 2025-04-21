@@ -1,9 +1,11 @@
+ // Add this import
+ // Add this import
+
 import 'package:fitness_dashboard_ui/const/constant.dart';
 import 'package:fitness_dashboard_ui/data/side_menu_data.dart';
- // Ensure this import is correct
 import 'package:fitness_dashboard_ui/screens/main_screen.dart';
-import 'package:fitness_dashboard_ui/screens/test_screen.dart'; // Add this import
-import 'package:fitness_dashboard_ui/screens/settings_screen.dart'; // Add this import
+import 'package:fitness_dashboard_ui/screens/settings_screen.dart';
+import 'package:fitness_dashboard_ui/screens/test_screen.dart';
 import 'package:fitness_dashboard_ui/ui/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,7 @@ class _SideMenuWidgetState extends State<SideMenuWidget> {
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 20),
-      color: const Color(0xFF171821),
+      color: cardBackgroundColor,
       child: ListView.builder(
         itemCount: data.menu.length,
         itemBuilder: (context, index) => buildMenuEntry(data, index),

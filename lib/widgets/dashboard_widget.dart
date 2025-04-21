@@ -1,3 +1,4 @@
+
 import 'package:fitness_dashboard_ui/util/responsive.dart';
 import 'package:fitness_dashboard_ui/widgets/activity_details_card.dart';
 import 'package:fitness_dashboard_ui/widgets/bar_graph_widget.dart';
@@ -10,22 +11,24 @@ class DashboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
-        child: Column(
-          children: [
-            const SizedBox(height: 10),
-            const HeaderWidget(),
-            const SizedBox(height: 18),
-            Center(child: const ActivityDetailsCard()),
-            const SizedBox(height: 18),
-            // const LineChartCard(),
-            // const SizedBox(height: 18),
-            const BarGraphCard(),
-            const SizedBox(height: 50),
-            if (Responsive.isTablet(context)) const SummaryWidget(),
-          ],
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor, // Match the theme's background color
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18),
+          child: Column(
+            children: [
+              
+              const SizedBox(height: 30),
+              const HeaderWidget(),
+              const SizedBox(height: 240),
+              Center(child: const ActivityDetailsCard()),
+              const SizedBox(height: 18),
+              const BarGraphCard(),
+              const SizedBox(height: 50),
+              if (Responsive.isTablet(context)) const SummaryWidget(),
+            ],
+          ),
         ),
       ),
     );

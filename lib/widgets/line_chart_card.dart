@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:fitness_dashboard_ui/const/constant.dart';
 import 'package:fitness_dashboard_ui/data/line_chart_data.dart';
 import 'package:fitness_dashboard_ui/widgets/custom_card_widget.dart';

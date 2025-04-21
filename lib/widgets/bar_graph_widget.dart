@@ -92,7 +92,12 @@ class BarGraphCard extends StatelessWidget {
               BarChartRodData(
                 toY: point.y,
                 width: 12,
-                color: color.withOpacity(point.y.toInt() > 4 ? 1 : 0.4),
+                color: Color.fromRGBO(
+                  color.red,
+                  color.green,
+                  color.blue,
+                  point.y.toInt() > 4 ? 1.0 : 0.4,
+                ),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(3.0),
                   topRight: Radius.circular(3.0),

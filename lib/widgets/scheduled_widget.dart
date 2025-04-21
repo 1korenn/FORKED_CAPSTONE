@@ -14,14 +14,18 @@ class Scheduled extends StatelessWidget {
       children: [
         const Text(
           "Scheduled",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.white, // Changed text color to white
+          ),
         ),
         const SizedBox(height: 12),
         for (var index = 0; index < data.scheduled.length; index++)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: CustomCard(
-              color: Colors.black,
+              color: const Color.fromARGB(166, 0, 0, 0),
               child: Column(
                 children: [
                   Row(
@@ -34,7 +38,9 @@ class Scheduled extends StatelessWidget {
                           Text(
                             data.scheduled[index].title,
                             style: const TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.w500),
+                                fontSize: 12, 
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white), // Changed title color to white
                           ),
                           const SizedBox(height: 2),
                           Text(

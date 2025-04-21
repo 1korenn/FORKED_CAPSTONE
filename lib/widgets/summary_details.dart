@@ -7,7 +7,7 @@ class SummaryDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-      color: const Color(0xFF2F353E),
+      color: const Color.fromARGB(255, 31, 34, 37),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -24,7 +24,7 @@ class SummaryDetails extends StatelessWidget {
       children: [
         Text(
           key,
-          style: const TextStyle(fontSize: 11, color: Colors.grey),
+          style: const TextStyle(fontSize: 11, color: Color.fromARGB(255, 255, 253, 253)),
         ),
         const SizedBox(height: 2),
         Text(
