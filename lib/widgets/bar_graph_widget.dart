@@ -34,6 +34,7 @@ class BarGraphCard extends StatelessWidget {
                   barGraphData.data[index].label,
                   style: const TextStyle(
                     fontSize: 14,
+                    color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -59,7 +60,7 @@ class BarGraphCard extends StatelessWidget {
                                 barGraphData.label[value.toInt()],
                                 style: const TextStyle(
                                     fontSize: 11,
-                                    color: Colors.grey,
+                                    color: Color.fromARGB(255, 255, 255, 255),
                                     fontWeight: FontWeight.w500),
                               ),
                             );

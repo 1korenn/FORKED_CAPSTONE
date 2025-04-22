@@ -24,7 +24,9 @@ class SummaryWidget extends StatelessWidget {
             // Chart(),
             Text(
               'Summary',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600,
+               color: Colors.white,
+              ),
             ),
             SizedBox(height: 16),
             SummaryDetails(),

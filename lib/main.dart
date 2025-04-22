@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: const Color.fromARGB(209, 33, 34, 45), // Match the const value `cardBackgroundColor`
+        scaffoldBackgroundColor: const Color.fromARGB(255, 26, 26, 34), // Match the const value `cardBackgroundColor`
       ),
       home: const MainScreen(),
     );

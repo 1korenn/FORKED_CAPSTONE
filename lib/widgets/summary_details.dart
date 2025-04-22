@@ -8,13 +8,13 @@ class SummaryDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-      color: const Color.fromARGB(255, 31, 34, 37),
+      color: Color.fromARGB(255, 26, 26, 34),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           buildDetails('sensor value', '305'),
           buildDetails('sensor value', '10983'),
-          buildDetails('sensor value', '7km'),
+          buildDetails('sensor value', '111'),
         ],
       ),
     );
@@ -29,9 +29,13 @@ class SummaryDetails extends StatelessWidget {
         ),
         const SizedBox(height: 2),
         Text(
-          value,
-          style: const TextStyle(fontSize: 14),
+        value,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.white, // Add white color to the text
         ),
+      ),
       ],
     );
   }

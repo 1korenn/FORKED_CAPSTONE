@@ -45,7 +45,7 @@ class ActivityDetailsCard extends StatelessWidget {
               healthDetails.healthData[index].title,
               style: const TextStyle(
                 fontSize: 13,
-                color: Colors.grey,
+                color: Colors.white,
                 fontWeight: FontWeight.normal,
               ),
             ),
