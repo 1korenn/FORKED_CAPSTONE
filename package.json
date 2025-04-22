@@ -1,5 +1,28 @@
 {
   "dependencies": {
     "firebase": "^11.4.0"
-  }
+  },
+  "name": "forked_capstone",
+  "version": "1.0.0",
+  "description": "This is a complete Fitness Dashboard UI built in Flutter. This repository is for education purposes so that you can learn the concepts of how you can create Responsive Dashboards in Flutter.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1korenn/FORKED_CAPSTONE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1korenn/FORKED_CAPSTONE/issues"
+  },
+  "homepage": "https://github.com/1korenn/FORKED_CAPSTONE#readme"
 }
