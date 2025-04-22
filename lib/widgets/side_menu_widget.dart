@@ -1,12 +1,13 @@
  // Add this import
  // Add this import
 
-import 'package:fitness_dashboard_ui/const/constant.dart';
-import 'package:fitness_dashboard_ui/data/side_menu_data.dart';
-import 'package:fitness_dashboard_ui/screens/main_screen.dart';
-import 'package:fitness_dashboard_ui/screens/settings_screen.dart';
-import 'package:fitness_dashboard_ui/screens/test_screen.dart';
-import 'package:fitness_dashboard_ui/ui/dashboard_screen.dart';
+
+import 'package:capstone_project/const/constant.dart';
+import 'package:capstone_project/data/side_menu_data.dart';
+import 'package:capstone_project/screens/main_screen.dart';
+import 'package:capstone_project/screens/settings_screen.dart';
+import 'package:capstone_project/screens/test_screen.dart';
+import 'package:capstone_project/ui/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 class SideMenuWidget extends StatefulWidget {
