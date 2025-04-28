@@ -1,13 +1,8 @@
- // Add this import
- // Add this import
-
-
 import 'package:capstone_project/const/constant.dart';
 import 'package:capstone_project/data/side_menu_data.dart';
+import 'package:capstone_project/screens/graph_screen.dart';
 import 'package:capstone_project/screens/main_screen.dart';
 import 'package:capstone_project/screens/settings_screen.dart';
-import 'package:capstone_project/screens/test_screen.dart';
-import 'package:capstone_project/ui/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 class SideMenuWidget extends StatefulWidget {
@@ -79,10 +74,10 @@ class _SideMenuWidgetState extends State<SideMenuWidget> {
     Widget screen;
     switch (title) {
       case 'Dashboard':
-        screen = DashboardScreen();
+        screen = MainScreen();
         break;
-      case 'Test':
-        screen = TestScreen();
+      case 'Charts':
+        screen = GraphScreen(); // Navigates to TestScreen
         break;
       case 'Settings':
         screen = SettingsScreen();

@@ -1,40 +1,19 @@
+import 'package:capstone_project/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+// Correctly import DashboardScreen
+import 'package:capstone_project/styles/theme.dart'; // Import the theme
 
-class DashboardScreen extends StatelessWidget {
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Dashboard'),
-      ),
-      body: Center( // Wrap the main container in a Center widget
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Card(
-              child: Column(
-                children: <Widget>[
-                  Text('PH Level'),
-                ],
-              ),
-            ),
-            Card(
-              child: Column(
-                children: <Widget>[
-                  Text('test'),
-                ],
-              ),
-            ),
-            Card(
-              child: Column(
-                children: <Widget>[
-                  Text('Heat'),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+    return MaterialApp(
+      title: 'Capstone Project',
+      theme: appTheme, // Apply the global theme
+      home: MainScreen(), // Set DashboardScreen as the main screen
     );
   }
 }

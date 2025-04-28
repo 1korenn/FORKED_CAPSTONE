@@ -5,7 +5,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class LineChartCard extends StatelessWidget {
-  const LineChartCard({super.key});
+  final List<FlSpot> spots; // Accept spots as a parameter
+
+  const LineChartCard({super.key, required this.spots});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +81,7 @@ class LineChartCard extends StatelessWidget {
                       show: true,
                     ),
                     dotData: FlDotData(show: false),
-                    spots: data.spots,
+                    spots: spots, // Use the passed spots
                   )
                 ],
                 minX: 0,

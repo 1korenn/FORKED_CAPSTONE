@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
+import '../services/firebase_service.dart';
 
 class TestScreen extends StatefulWidget {
   @override
@@ -7,51 +7,59 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+  final FirebaseService _firebaseService = FirebaseService();
 
   String _moisture = 'Loading...';
   String _ph = 'Loading...';
+
+ 
 
   @override
   void initState() {
     super.initState();
 
     // Listen for changes in moisture
-    _dbRef.child('sensorData/moisture').onValue.listen((event) {
-      final value = event.snapshot.value;
-      if (value != null) {
-        setState(() {
-          _moisture = value.toString();
-        });
-      }
+    _firebaseService.getMoistureStream().listen((value) {
+      setState(() {
+        _moisture = value;
+      });
     });
 
     // Listen for changes in pH
-    _dbRef.child('sensorData/ph').onValue.listen((event) {
-      final value = event.snapshot.value;
-      if (value != null) {
-        setState(() {
-          _ph = value.toString();
-        });
-      }
+    _firebaseService.getPhStream().listen((value) {
+      setState(() {
+        _ph = value;
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Test screen')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('🌱 Soil Moisture: $_moisture', style: TextStyle(fontSize: 22)),
+            Text(
+              '🌱 Soil Moisture: $_moisture',
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.green, // Added green color for soil moisture
+              ),
+            ),
             SizedBox(height: 10),
-            Text('🧪 Soil pH Level: $_ph', style: TextStyle(fontSize: 22)),
+            Text(
+              '🧪 Soil pH Level: $_ph',
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.blue, // Added blue color for soil pH level
+              ),
+            ),
           ],
         ),
       ),
+      
     );
   }
 }
