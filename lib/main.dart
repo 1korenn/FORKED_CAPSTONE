@@ -14,12 +14,13 @@ void main() async {
         storageBucket: "capstone-forked.firebasestorage.app",
         messagingSenderId: "843926843316",
         appId: "1:843926843316:web:00aa960c3d17a8a55b4ce1",
-        databaseURL: "https://capstone-forked-default-rtdb.asia-southeast1.firebasedatabase.app", // Add this line
+        databaseURL: "https://capstone-forked-default-rtdb.asia-southeast1.firebasedatabase.app",
       ),
     );
   } catch (e) {
     print("Firebase initialization error: $e");
   }
+
   runApp(const MyApp());
 }
 
