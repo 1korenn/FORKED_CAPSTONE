@@ -1,5 +1,3 @@
-import 'package:capstone_project/const/constant.dart';
-import 'package:capstone_project/data/line_chart_data.dart';
 import 'package:capstone_project/widgets/custom_card_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -11,87 +9,72 @@ class LineChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = LineData();
-
     return CustomCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "24-Hour Overview",
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(height: 20),
-          AspectRatio(
-            aspectRatio: 16 / 6,
-            child: LineChart(
-              LineChartData(
-                lineTouchData: LineTouchData(
-                  handleBuiltInTouches: true,
-                ),
-                gridData: FlGridData(show: false),
-                titlesData: FlTitlesData(
-                  rightTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      getTitlesWidget: (double value, TitleMeta meta) {
-                        return data.bottomTitle[value.toInt()] != null
-                            ? Container(
-                                child: Text(
-                                    data.bottomTitle[value.toInt()].toString(),
-                                    style: TextStyle(
-                                        fontSize: 12, color: Colors.grey[400])),
-                              )
-                            : const SizedBox();
-                      },
-                    ),
-                  ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      getTitlesWidget: (double value, TitleMeta meta) {
-                        return data.leftTitle[value.toInt()] != null
-                            ? Text(data.leftTitle[value.toInt()].toString(),
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.grey[400]))
-                            : const SizedBox();
-                      },
-                      showTitles: true,
-                      interval: 20,
-                      reservedSize: 40,
-                    ),
-                  ),
-                ),
-                borderData: FlBorderData(show: false),
-                lineBarsData: [
-                  LineChartBarData(
-                    color: selectionColor,
-                    barWidth: 2.5,
-                    belowBarData: BarAreaData(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          selectionColor.withOpacity(0.5),
-                          Colors.transparent
-                        ],
+      child: Center( // Center the content
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Moisture Level",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white),
+            ),
+            const SizedBox(height: 20),
+            Expanded( // Wrap the LineChart in Expanded to prevent overflow
+              child: AspectRatio(
+                aspectRatio: 16 / 6,
+                child: LineChart(
+                  LineChartData(
+                    lineBarsData: [
+                      LineChartBarData(
+                        spots: spots, // Use the passed spots parameter
+                        isCurved: true,
+                        barWidth: 2.5,
+                        color: Colors.blue,
+                        belowBarData: BarAreaData(show: false),
                       ),
-                      show: true,
+                    ],
+                    minX: spots.isNotEmpty ? spots.first.x : 0,
+                    maxX: spots.isNotEmpty ? spots.last.x : 24,
+                    minY: 0,
+                    maxY: 100, // Adjust based on your moisture value range
+                    titlesData: FlTitlesData(
+                      bottomTitles: AxisTitles(
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                          interval: 3600000, // Show titles every hour (3600000 ms = 1 hour)
+                          getTitlesWidget: (value, meta) {
+                            // Convert timestamp to readable time
+                            final date = DateTime.fromMillisecondsSinceEpoch(value.toInt());
+                            final formattedTime = "${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}";
+                            return Text(
+                              formattedTime,
+                              style: TextStyle(fontSize: 12, color: Colors.grey),
+                            );
+                          },
+                        ),
+                      ),
+                      leftTitles: AxisTitles(
+                        sideTitles: SideTitles(
+                          showTitles: true,
+                          reservedSize: 20,
+                          interval: 10,
+                          getTitlesWidget: (value, meta) {
+                            return Text(
+                              value.toInt().toString(),
+                              style: TextStyle(fontSize: 12, color: Colors.grey),
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                    dotData: FlDotData(show: false),
-                    spots: spots, // Use the passed spots
-                  )
-                ],
-                minX: 0,
-                maxX: 24,
-                maxY: 100,
-                minY: 0,
+                    gridData: FlGridData(show: false),
+                    borderData: FlBorderData(show: false),
+                  ),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

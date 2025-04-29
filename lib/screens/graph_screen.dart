@@ -1,5 +1,6 @@
 import 'package:capstone_project/data/line_chart_data.dart';
-import 'package:capstone_project/widgets/line_chart_card.dart';
+import 'package:capstone_project/screens/moisture_graph.dart';
+
 import 'package:flutter/material.dart';
 
 class GraphScreen extends StatelessWidget {
@@ -14,7 +15,8 @@ class GraphScreen extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
-          child: LineChartCard(spots: data.test1Spots), // Pass the dataset here
+          // child: LineChartCard(spots: data.test1Spots), // Pass the dataset here
+          child: MoistureGraphScreen(),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
