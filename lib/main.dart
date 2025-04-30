@@ -1,3 +1,4 @@
+import 'package:capstone_project/const/constant.dart';
 import 'package:capstone_project/screens/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,7 @@ class MyApp extends StatelessWidget {
       title: 'Capstone App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: const Color.fromARGB(255, 26, 26, 34), // Match the const value `cardBackgroundColor`
+        scaffoldBackgroundColor: backgroundColor, // Use the constant
       ),
       home: const MainScreen(),
     );

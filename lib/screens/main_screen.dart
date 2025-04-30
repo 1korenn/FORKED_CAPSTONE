@@ -17,6 +17,7 @@ class MainScreen extends StatelessWidget {
           ? const SizedBox(
               width: 250,
               child: SideMenuWidget(),
+              
             )
           : null,
       endDrawer: Responsive.isMobile(context)
