@@ -29,8 +29,10 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
         final timestamp = DateTime.now().millisecondsSinceEpoch.toDouble(); // Use timestamp as X-axis
         _moistureSpots.add(FlSpot(timestamp, moistureValue));
 
-        // Save the new data to local storage
-        _saveDataToFirebase();
+        // Save the new data to Firebase only if there are changes
+        if (_moistureSpots.isNotEmpty) {
+          _saveDataToFirebase();
+        }
 
         // Limit the number of points to 144 (24 hours with 10-minute intervals)
         if (_moistureSpots.length > 144) {
@@ -42,33 +44,53 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
 
   // Save data to local storage
   Future<void> _saveDataToFirebase() async {
-  final databaseRef = FirebaseDatabase.instance.ref('moistureData');
-  final moistureData = _moistureSpots.map((spot) => {'x': spot.x, 'y': spot.y}).toList();
-  final historyData = _historySpots.map((spot) => {'x': spot.x, 'y': spot.y}).toList();
+    final databaseRef = FirebaseDatabase.instance.ref('moistureData');
+    final moistureData = _moistureSpots.map((spot) => {'x': spot.x, 'y': spot.y}).toList();
+    final historyData = _historySpots.map((spot) => {'x': spot.x, 'y': spot.y}).toList();
 
-  await databaseRef.set({
-    'current': moistureData,
-    'history': historyData,
-  });
-}
-
+    await databaseRef.update({ // Use update instead of set to avoid overwriting
+      'current': moistureData,
+      'history': historyData,
+    });
+  }
 
   // Load data from local storage
   Future<void> _loadDataFromFirebase() async {
-  final databaseRef = FirebaseDatabase.instance.ref('moistureData');
-  final snapshot = await databaseRef.get();
+    final databaseRef = FirebaseDatabase.instance.ref('moistureData');
+    final snapshot = await databaseRef.get();
 
-  if (snapshot.exists) {
-    final data = snapshot.value as Map;
-    final currentData = data['current'] as List<dynamic>;
-    final historyData = data['history'] as List<dynamic>;
+    if (snapshot.exists) {
+      try {
+        final data = snapshot.value as Map<dynamic, dynamic>?;
+        if (data != null) {
+          final currentData = data['current'] as List<dynamic>? ?? [];
+          final historyData = data['history'] as List<dynamic>? ?? [];
 
-    _moistureSpots.addAll(currentData.map((item) => FlSpot(item['x'], item['y'])));
-    _historySpots.addAll(historyData.map((item) => FlSpot(item['x'], item['y'])));
+          _moistureSpots.clear();
+          _historySpots.clear();
+
+          _moistureSpots.addAll(currentData.map((item) {
+            final x = item['x'] as num? ?? 0;
+            final y = item['y'] as num? ?? 0;
+            return FlSpot(x.toDouble(), y.toDouble());
+          }));
+
+          _historySpots.addAll(historyData.map((item) {
+            final x = item['x'] as num? ?? 0;
+            final y = item['y'] as num? ?? 0;
+            return FlSpot(x.toDouble(), y.toDouble());
+          }));
+        }
+      } catch (e) {
+        print('Error parsing Firebase data: $e');
+      }
+    } else {
+      print('No data found in Firebase.');
+    }
+
+    setState(() {}); // Refresh the UI
   }
 
-  setState(() {}); // Refresh the UI
-}
   // Show historical data
   void _showHistory() {
     showDialog(
