@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:capstone_project/services/firebase_service.dart';
 import 'package:capstone_project/widgets/line_chart_card.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:firebase_database/firebase_database.dart'; // Import added
 
 class MoistureGraphScreen extends StatefulWidget {
   @override
@@ -23,52 +22,40 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
 
   // Listen for real-time updates
   void _listenToMoistureStream() {
-    _firebaseService.getMoistureStream().listen((value) {
-      setState(() {
-        final moistureValue = double.tryParse(value) ?? 0.0;
-        final timestamp = DateTime.now().millisecondsSinceEpoch.toDouble(); // Use timestamp as X-axis
-        _moistureSpots.add(FlSpot(timestamp, moistureValue));
+  _firebaseService.getMoistureStream().listen((value) {
+    if (value.isEmpty) return; // Skip empty values
 
-        // Save the new data to local storage
-        _saveDataToFirebase();
+    setState(() {
+      final moistureValue = double.tryParse(value) ?? 0.0;
+      if (moistureValue < 0 || moistureValue > 100) return; // Skip invalid values
 
-        // Limit the number of points to 144 (24 hours with 10-minute intervals)
-        if (_moistureSpots.length > 144) {
-          _historySpots.add(_moistureSpots.removeAt(0)); // Move removed data to history
-        }
-      });
+      final timestamp = DateTime.now().millisecondsSinceEpoch.toDouble(); // Use timestamp as X-axis
+      _moistureSpots.add(FlSpot(timestamp, moistureValue));
+
+      // Limit the number of points to 144 (24 hours with 10-minute intervals)
+      if (_moistureSpots.length > 144) {
+        _historySpots.add(_moistureSpots.removeAt(0)); // Move removed data to history
+      }
     });
-  }
-
-  // Save data to local storage
-  Future<void> _saveDataToFirebase() async {
-  final databaseRef = FirebaseDatabase.instance.ref('moistureData');
-  final moistureData = _moistureSpots.map((spot) => {'x': spot.x, 'y': spot.y}).toList();
-  final historyData = _historySpots.map((spot) => {'x': spot.x, 'y': spot.y}).toList();
-
-  await databaseRef.set({
-    'current': moistureData,
-    'history': historyData,
   });
 }
 
-
-  // Load data from local storage
+  // Load data from Firebase
   Future<void> _loadDataFromFirebase() async {
-  final databaseRef = FirebaseDatabase.instance.ref('moistureData');
-  final snapshot = await databaseRef.get();
-
-  if (snapshot.exists) {
-    final data = snapshot.value as Map;
-    final currentData = data['current'] as List<dynamic>;
-    final historyData = data['history'] as List<dynamic>;
-
-    _moistureSpots.addAll(currentData.map((item) => FlSpot(item['x'], item['y'])));
-    _historySpots.addAll(historyData.map((item) => FlSpot(item['x'], item['y'])));
+    try {
+      final data = await _firebaseService.getCurrentMoisture();
+      if (data != null) {
+        setState(() {
+          final moistureValue = double.tryParse(data) ?? 0.0;
+          final timestamp = DateTime.now().millisecondsSinceEpoch.toDouble();
+          _moistureSpots.add(FlSpot(timestamp, moistureValue));
+        });
+      }
+    } catch (e) {
+      print('Error loading data from Firebase: $e');
+    }
   }
 
-  setState(() {}); // Refresh the UI
-}
   // Show historical data
   void _showHistory() {
     showDialog(
@@ -118,7 +105,14 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
         child: Column(
           children: [
             Expanded(
-              child: LineChartCard(spots: _moistureSpots), // Pass the updated spots
+              child: _moistureSpots.isEmpty
+                  ? Center(
+                      child: Text(
+                        "No data available",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                    )
+                  : LineChartCard(spots: _moistureSpots), // Pass the updated spots
             ),
           ],
         ),
