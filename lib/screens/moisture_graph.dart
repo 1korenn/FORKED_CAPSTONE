@@ -72,7 +72,7 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
         }
 
         _saveDataToLocalStorage();
-        // _saveDataToFirebase(); // Uncomment if you want to sync to Firebase
+        _saveDataToFirebase(); // Uncomment if you want to sync to Firebase
       });
     });
   }
