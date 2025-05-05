@@ -10,7 +10,7 @@ class GraphScreen extends StatefulWidget {
 }
 
 class _GraphScreenState extends State<GraphScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 0; 
 
   @override
   Widget build(BuildContext context) {

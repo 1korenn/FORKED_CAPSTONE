@@ -10,14 +10,14 @@ class LineChartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // Sort spots chronologically (oldest to newest)
     final displaySpots = spots.toList()..sort((a, b) => a.x.compareTo(b.x));
-
+ 
     return LineChart(
       LineChartData(
         lineBarsData: [
           LineChartBarData(
             // Invert x values to make newest on the left
             spots: displaySpots.map((spot) => FlSpot(-spot.x, spot.y)).toList(),
-            isCurved: true,
+          
             barWidth: 2.5,
             color: Colors.blue,
             belowBarData: BarAreaData(show: false),
