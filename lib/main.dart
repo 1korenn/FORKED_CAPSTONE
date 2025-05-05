@@ -1,3 +1,4 @@
+import 'package:capstone_project/const/constant.dart';
 import 'package:capstone_project/screens/main_screen.dart';
 import 'package:capstone_project/styles/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
