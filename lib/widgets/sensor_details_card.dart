@@ -1,24 +1,25 @@
-import 'package:capstone_project/data/sensor_details.dart';
 import 'package:capstone_project/util/responsive.dart';
 import 'package:capstone_project/widgets/custom_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:capstone_project/model/sensor_model.dart';
+import 'package:capstone_project/data/sensor_details.dart';
 
-class ActivityDetailsCard extends StatelessWidget {
-  const ActivityDetailsCard({super.key});
+class SensorDetailsCard extends StatelessWidget {
+  const SensorDetailsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     final sensorDetails = SensorDetails();
 
-    return FutureBuilder(
-      future: sensorDetails.getSensorData(),
+    return StreamBuilder<List<SensorModel>>(
+      stream: sensorDetails.getSensorDataStream(), // Real-time updates from Firebase
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error loading sensor data'));
+          return const Center(child: Text('Error loading sensor data'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(child: Text('No sensor data available'));
+          return const Center(child: Text('No sensor data available'));
         }
 
         final sensorData = snapshot.data!;

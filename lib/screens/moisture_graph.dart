@@ -160,8 +160,14 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+    @override
+      Widget build(BuildContext context) {
+        // Filter spots to include only one point per 10-minute interval
+        final filteredSpots = _moistureSpots.where((spot) {
+          final timestamp = DateTime.fromMillisecondsSinceEpoch(spot.x.toInt());
+          return timestamp.minute % 10 == 0 && timestamp.second == 0;
+        }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Moisture Graph'),
@@ -177,15 +183,14 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
         child: Column(
           children: [
             Expanded(
-              child: _moistureSpots.isEmpty
+              child: filteredSpots.isEmpty
                   ? Center(
                       child: Text(
                         "No data available",
-                        style:
-                            TextStyle(fontSize: 16, color: Colors.grey),
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
                       ),
                     )
-                  : LineChartCard(spots: _moistureSpots),
+                  : LineChartCard(spots: filteredSpots),
             ),
           ],
         ),

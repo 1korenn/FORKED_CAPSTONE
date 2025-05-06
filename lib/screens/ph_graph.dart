@@ -167,8 +167,14 @@ class _PhGraphScreenState extends State<PhGraphScreen> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+    @override
+      Widget build(BuildContext context) {
+        // Filter spots to include only one point per 10-minute interval
+        final filteredSpots = _phSpots.where((spot) {
+          final timestamp = DateTime.fromMillisecondsSinceEpoch((-spot.x).toInt());
+          return timestamp.minute % 10 == 0 && timestamp.second == 0;
+        }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('PH Graph'),
@@ -188,7 +194,7 @@ class _PhGraphScreenState extends State<PhGraphScreen> {
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               )
-            : PhChartCard(spots: _phSpots),
+            : PhChartCard(spots: filteredSpots),
       ),
     );
   }

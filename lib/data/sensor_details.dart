@@ -1,70 +1,37 @@
-import 'package:capstone_project/model/health_model.dart';
+import 'dart:async';
+import 'package:async/async.dart';
+import 'package:capstone_project/model/sensor_model.dart';
 import 'package:capstone_project/services/firebase_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SensorDetails {
   final FirebaseService _firebaseService = FirebaseService();
 
-  Future<List<HealthModel>> getSensorData() async {
-    final prefs = await SharedPreferences.getInstance();
+  Stream<List<SensorModel>> getSensorDataStream() {
+    // Combine the ph and moisture streams into a single stream
+    final phStream = _firebaseService.getPhStream();
+    final moistureStream = _firebaseService.getMoistureStream();
 
-    // Load cached values
-    final cachedPh = prefs.getString('cachedPh') ?? 'Loading...';
-    final cachedMoisture = prefs.getString('cachedMoisture') ?? 'Loading...';
-
-    // Return cached values immediately
-    final initialData = [
-      HealthModel(
-        icon: 'assets/icons/burn.png',
-        value: cachedPh,
-        title: "PH Level",
-      ),
-      HealthModel(
-        icon: 'assets/icons/steps.png',
-        value: cachedMoisture,
-        title: "Moisture",
-      ),
-      HealthModel(
-        icon: 'assets/icons/distance.png',
-        value: "test", // Replace with actual value if needed
-        title: "Heat",
-      ),
-    ];
-
-    // Fetch data in the background
-    try {
-      final results = await Future.wait([
-        _firebaseService.getCurrentPh(),
-        _firebaseService.getCurrentMoisture(),
-      ]);
-
-      final phValue = results[0];
-      final moistureValue = results[1];
-
-      // Save to cache
-      prefs.setString('cachedPh', phValue);
-      prefs.setString('cachedMoisture', moistureValue);
+    return StreamZip([phStream, moistureStream]).map((values) {
+      final phValue = values[0];
+      final moistureValue = values[1];
 
       return [
-        HealthModel(
+        SensorModel(
           icon: 'assets/icons/burn.png',
-          value: phValue,
+          value: phValue.toString(),
           title: "PH Level",
         ),
-        HealthModel(
+        SensorModel(
           icon: 'assets/icons/steps.png',
-          value: moistureValue,
+          value: moistureValue.toString(),
           title: "Moisture",
         ),
-        HealthModel(
+        SensorModel(
           icon: 'assets/icons/distance.png',
           value: "test", // Replace with actual value if needed
           title: "Heat",
         ),
       ];
-    } catch (e) {
-      print('Error fetching sensor data: $e');
-      return initialData; // Return cached values in case of error
-    }
+    });
   }
 }
