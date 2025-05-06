@@ -17,7 +17,7 @@ class SummaryDetails extends StatelessWidget {
           buildDetails('sensor value', '111'),
         ],
       ),
-    );
+    ); 
   }
 
   Widget buildDetails(String key, String value) {

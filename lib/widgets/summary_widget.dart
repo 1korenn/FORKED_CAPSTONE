@@ -6,6 +6,7 @@ import 'package:capstone_project/const/constant.dart';
 import 'package:capstone_project/widgets/scheduled_widget.dart';
 import 'package:capstone_project/widgets/summary_details.dart';
 import 'package:flutter/material.dart';
+import 'package:capstone_project/widgets/sensor_summary_widget.dart';
 
 class SummaryWidget extends StatelessWidget {
   const SummaryWidget({super.key});
@@ -21,7 +22,7 @@ class SummaryWidget extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 20),
-            // Chart(),
+            // Chart(), 
             Text(
               'Summary',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600,
@@ -30,6 +31,8 @@ class SummaryWidget extends StatelessWidget {
             ),
             SizedBox(height: 16),
             SummaryDetails(),
+            SizedBox(height: 16),
+            SensorSummaryStreamWidget(), //this is problematic
             SizedBox(height: 40),
             Scheduled(),
           ],

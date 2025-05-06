@@ -8,16 +8,13 @@ class LineChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Sort spots chronologically (oldest to newest)
     final displaySpots = spots.toList()..sort((a, b) => a.x.compareTo(b.x));
- 
+
     return LineChart(
       LineChartData(
         lineBarsData: [
           LineChartBarData(
-            // Invert x values to make newest on the left
             spots: displaySpots.map((spot) => FlSpot(-spot.x, spot.y)).toList(),
-          
             barWidth: 2.5,
             color: Colors.blue,
             belowBarData: BarAreaData(show: false),
@@ -32,8 +29,8 @@ class LineChartCard extends StatelessWidget {
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
-              interval: displaySpots.isNotEmpty
-                  ? (displaySpots.last.x - displaySpots.first.x).abs() / 5
+              interval: displaySpots.length > 1
+                  ? ((displaySpots.last.x - displaySpots.first.x).abs() / 5).clamp(1, double.infinity)
                   : 1,
               getTitlesWidget: (value, meta) {
                 final date = DateTime.fromMillisecondsSinceEpoch(-value.toInt());
@@ -65,7 +62,6 @@ class LineChartCard extends StatelessWidget {
         lineTouchData: LineTouchData(
           enabled: true,
           touchTooltipData: LineTouchTooltipData(
-            // tooltipBgColor: Colors.blueAccent, // This line is corrected.
             getTooltipItems: (spots) => spots
                 .map(
                   (spot) => LineTooltipItem(
