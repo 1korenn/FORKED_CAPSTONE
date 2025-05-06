@@ -25,7 +25,7 @@ class ChartData {
     PieChartSectionData(
       color: const Color(0xFFEE2727),
       value: 15,
-      showTitle: false,
+      showTitle: false, 
       radius: 16,
     ),
     PieChartSectionData(
