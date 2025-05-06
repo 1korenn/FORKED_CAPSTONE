@@ -58,6 +58,7 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
       final timestamp = DateTime.now().millisecondsSinceEpoch.toDouble();
 
       setState(() {
+        // Check if the last value already exists to avoid duplication
         if (_moistureSpots.isEmpty || _moistureSpots.last.x != timestamp) {
           _moistureSpots.add(FlSpot(timestamp, moistureValue));
 
@@ -69,10 +70,10 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
           _moistureSpots.removeWhere((spot) =>
               _moistureSpots.indexOf(spot) !=
               _moistureSpots.lastIndexWhere((s) => s.x == spot.x));
-        }
 
-        _saveDataToLocalStorage();
-        _saveDataToFirebase(); // Uncomment if you want to sync to Firebase
+          _saveDataToLocalStorage();
+          _saveDataToFirebase(); // Ensure data is saved to Firebase
+        }
       });
     });
   }

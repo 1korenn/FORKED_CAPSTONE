@@ -58,20 +58,33 @@ class _PhGraphScreenState extends State<PhGraphScreen> {
       final timestamp = DateTime.now().millisecondsSinceEpoch.toDouble();
 
       setState(() {
-        _phSpots.add(FlSpot(-timestamp, phValue)); // Reverse X-axis by negating timestamp
+        if (_phSpots.isEmpty || _phSpots.last.x != -timestamp) {
+          _phSpots.add(FlSpot(-timestamp, phValue)); // Reverse X-axis by negating timestamp
 
-        if (_phSpots.length > 144) {
-          _phSpots.removeAt(0);
+          if (_phSpots.length > 144) {
+            _phSpots.removeAt(0);
+          }
+
+          _phSpots.sort((a, b) => b.x.compareTo(a.x)); // Sort in descending order for right-to-left
+          _phSpots.removeWhere((spot) =>
+              _phSpots.indexOf(spot) !=
+              _phSpots.lastIndexWhere((s) => s.x == spot.x));
+
+          _saveDataToLocalStorage();
+          _saveDataToFirebase(); // Ensure data is saved to Firebase
         }
-
-        _phSpots.sort((a, b) => b.x.compareTo(a.x)); // Sort in descending order for right-to-left
-        _phSpots.removeWhere((spot) =>
-            _phSpots.indexOf(spot) !=
-            _phSpots.lastIndexWhere((s) => s.x == spot.x));
-
-        _saveDataToLocalStorage();
-        _saveDataToFirebase();
       });
+    });
+  }
+
+  Future<void> _saveDataToFirebase() async {
+    final databaseRef = FirebaseDatabase.instance.ref('phData');
+    final phData = _phSpots.map((spot) => {'x': -spot.x, 'y': spot.y}).toList(); // Reverse X-axis back
+    final historyData = _historySpots.map((spot) => {'x': -spot.x, 'y': spot.y}).toList(); // Reverse X-axis back
+
+    await databaseRef.update({
+      'current': phData,
+      'history': historyData,
     });
   }
 
@@ -110,17 +123,6 @@ class _PhGraphScreenState extends State<PhGraphScreen> {
     } else {
       print('No data found in Firebase.');
     }
-  }
-
-  Future<void> _saveDataToFirebase() async {
-    final databaseRef = FirebaseDatabase.instance.ref('phData');
-    final phData = _phSpots.map((spot) => {'x': -spot.x, 'y': spot.y}).toList(); // Reverse X-axis back
-    final historyData = _historySpots.map((spot) => {'x': -spot.x, 'y': spot.y}).toList(); // Reverse X-axis back
-
-    await databaseRef.update({
-      'current': phData,
-      'history': historyData,
-    });
   }
 
   void _showHistory() {

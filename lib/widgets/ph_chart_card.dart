@@ -8,7 +8,16 @@ class PhChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final displaySpots = spots.toList()..sort((a, b) => a.x.compareTo(b.x));
+    // Filter out duplicate consecutive values
+    final displaySpots = spots.toList()
+      ..sort((a, b) => a.x.compareTo(b.x))
+      ..removeWhere((spot) {
+        final index = spots.indexOf(spot);
+        if (index > 0) {
+          return spots[index].y == spots[index - 1].y; // Remove if same as previous value
+        }
+        return false;
+      });
 
     return LineChart(
       LineChartData(
@@ -33,7 +42,7 @@ class PhChartCard extends StatelessWidget {
                   ? ((displaySpots.last.x - displaySpots.first.x).abs() / 5).clamp(1, double.infinity)
                   : 1,
               getTitlesWidget: (value, meta) {
-                final date = DateTime.fromMillisecondsSinceEpoch(-value.toInt());
+                final date = DateTime.fromMillisecondsSinceEpoch(-value.toInt()).toLocal(); // Convert to local timezone
                 final formattedTime =
                     "${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}";
                 return Text(

@@ -32,7 +32,7 @@ class SummaryWidget extends StatelessWidget {
             SizedBox(height: 16),
             SummaryDetails(),
             SizedBox(height: 16),
-            SensorSummaryStreamWidget(), //this is problematic
+            SensorSummaryStreamWidget(), 
             SizedBox(height: 40),
             Scheduled(),
           ],
