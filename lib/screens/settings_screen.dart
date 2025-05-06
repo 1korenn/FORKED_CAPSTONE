@@ -6,10 +6,10 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       
       appBar: AppBar(
-        title: Text('heat'),
+        title: Text('settings'),
       ),
       body: Center(
-        child: Text('heat'),
+        child: Text('test'),
       ),
     );
     

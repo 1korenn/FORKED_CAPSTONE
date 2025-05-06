@@ -35,7 +35,7 @@ class _GraphScreenState extends State<GraphScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Test1 Graph Screen'),
+        title: Text('Graph Screen'),
       ),
       body: Center(
         child: Padding(

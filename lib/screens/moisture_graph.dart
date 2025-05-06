@@ -76,7 +76,7 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
       });
     });
   }
-
+ 
   Future<void> _loadDataFromFirebase() async {
     final databaseRef = FirebaseDatabase.instance.ref('moistureData');
     final snapshot = await databaseRef.get();
