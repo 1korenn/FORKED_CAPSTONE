@@ -21,6 +21,9 @@ dependencies:
   shared_preferences: ^2.0.15
   path_provider: ^2.0.11
   async: ^2.8.2
+  settings_ui: ^2.0.2
+  provider: ^6.1.5
+  flutter_carousel_widget: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -32,5 +35,9 @@ flutter:
 
   uses-material-design: true
   assets:
-    - assets/images/
+    - assets/images/test1.png
+    - assets/images/test2.png
+    - assets/images/test3.jpg
+    - assets/images/test4.png
+    - assets/images/test5.png
     - assets/icons/  

@@ -1,4 +1,5 @@
 import 'package:capstone_project/util/responsive.dart';
+import 'package:capstone_project/widgets/carousel_widget.dart';
 import 'package:capstone_project/widgets/sensor_details_card.dart';
 import 'package:capstone_project/widgets/bar_graph_widget.dart';
 import 'package:capstone_project/widgets/header_widget.dart';
@@ -17,7 +18,9 @@ class DashboardWidget extends StatelessWidget {
           children: [
             const SizedBox(height: 30),
             const HeaderWidget(),
-            const SizedBox(height: 240),
+            const SizedBox(height: 30),
+             CarouselWidget(),
+            const SizedBox(height: 20),
             Center(child: const SensorDetailsCard()),
             const SizedBox(height: 18),
             const BarGraphCard(),
