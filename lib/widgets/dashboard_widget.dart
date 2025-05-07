@@ -14,11 +14,13 @@ class DashboardWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // Align items to the center vertically
+          crossAxisAlignment: CrossAxisAlignment.center, // Align items to the center horizontally
           children: [
             const SizedBox(height: 30),
             const HeaderWidget(),
             const SizedBox(height: 240),
-            Center(child: const ActivityDetailsCard()),
+            const ActivityDetailsCard(),
             const SizedBox(height: 18),
             const BarGraphCard(),
             const SizedBox(height: 50),

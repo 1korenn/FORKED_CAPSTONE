@@ -4,11 +4,13 @@ import 'package:capstone_project/model/health_model.dart';
 class HealthDetails {
   final healthData = const [
     HealthModel(
-        icon: 'assets/icons/burn.png', value: "69", title: "PH Level"),
+        icon: 'assets/icons/ph.jpg', value: "69", title: "PH Level"),
     HealthModel(
-        icon: 'assets/icons/steps.png', value: "69", title: "Moisture"),
+        icon: 'assets/icons/moisture.jpg', value: "69", title: "Moisture"),
     HealthModel(
-        icon: 'assets/icons/distance.png', value: "69", title: "Heat"),
+        icon: 'assets/icons/heat.jpg', value: "69", title: "Heat"),
+    HealthModel(
+        icon: 'assets/icons/weather.png', value: "69", title: "weather"),
     
   ];
 }

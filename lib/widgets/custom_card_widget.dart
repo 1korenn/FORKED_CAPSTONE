@@ -17,7 +17,7 @@ class CustomCard extends StatelessWidget {
           color: color ?? cardBackgroundColor,
         ),
         child: Padding(
-          padding: padding ?? const EdgeInsets.all(12.0),
+          padding: padding ?? const EdgeInsets.all(15.0),
           child: child,
         ));
   }

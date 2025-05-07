@@ -1,7 +1,7 @@
 import 'package:capstone_project/data/bar_graph_data.dart';
 import 'package:capstone_project/model/graph_model.dart';
 import 'package:capstone_project/widgets/custom_card_widget.dart';
-
+import 'package:capstone_project/util/responsive.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +14,12 @@ class BarGraphCard extends StatelessWidget {
 
     return GridView.builder(
       itemCount: barGraphData.data.length,
-      shrinkWrap: true,
-      physics: const ScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 15,
+      shrinkWrap: true, // Allow the GridView to size itself based on its content
+      physics: const NeverScrollableScrollPhysics(), // Disable internal scrolling
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: Responsive.isMobile(context) ? 2 : 4, // Adjust columns based on screen size
+        crossAxisSpacing: Responsive.isMobile(context) ? 12 : 15,
         mainAxisSpacing: 12.0,
-        childAspectRatio: 5 / 4,
       ),
       itemBuilder: (context, index) {
         return CustomCard(
@@ -59,9 +58,10 @@ class BarGraphCard extends StatelessWidget {
                               child: Text(
                                 barGraphData.label[value.toInt()],
                                 style: const TextStyle(
-                                    fontSize: 11,
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                    fontWeight: FontWeight.w500),
+                                  fontSize: 11,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             );
                           },
@@ -87,8 +87,10 @@ class BarGraphCard extends StatelessWidget {
     );
   }
 
-  List<BarChartGroupData> _chartGroups(
-      {required List<GraphModel> points, required Color color}) {
+  List<BarChartGroupData> _chartGroups({
+    required List<GraphModel> points,
+    required Color color,
+  }) {
     return points
         .map((point) => BarChartGroupData(x: point.x.toInt(), barRods: [
               BarChartRodData(
@@ -98,7 +100,7 @@ class BarGraphCard extends StatelessWidget {
                   color.red,
                   color.green,
                   color.blue,
-                  point.y.toInt() > 4 ? 1.0 : 0.4,
+                  1.0,
                 ),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(3.0),
