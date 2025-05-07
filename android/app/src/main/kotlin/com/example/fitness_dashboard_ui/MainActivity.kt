@@ -1,4 +1,4 @@
-package com.example.fitness_dashboard_ui
+package com.example.capstoneapp
 
 import io.flutter.embedding.android.FlutterActivity
 

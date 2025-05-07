@@ -1,10 +1,30 @@
 {
   "project_info": {
     "project_number": "843926843316",
+    "firebase_url": "https://capstone-forked-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "capstone-forked",
     "storage_bucket": "capstone-forked.firebasestorage.app"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843926843316:android:e4f6f1c6c353a5005b4ce1",
+        "android_client_info": {
+          "package_name": "com.example.capstoneapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWVT9mRDNElQLwCORya47BQXdvjfF7ckk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:843926843316:android:df7e0eae7c68be805b4ce1",
