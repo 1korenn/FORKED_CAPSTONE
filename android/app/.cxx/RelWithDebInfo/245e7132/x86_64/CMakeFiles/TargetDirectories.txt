@@ -1,0 +1,2 @@
+C:/Users/USER/dev/tes/FORKED_CAPSTONE/android/app/.cxx/RelWithDebInfo/245e7132/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/USER/dev/tes/FORKED_CAPSTONE/android/app/.cxx/RelWithDebInfo/245e7132/x86_64/CMakeFiles/rebuild_cache.dir

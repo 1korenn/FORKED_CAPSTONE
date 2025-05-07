@@ -1,4 +1,3 @@
-
 import 'package:capstone_project/util/responsive.dart';
 import 'package:capstone_project/widgets/dashboard_widget.dart';
 import 'package:capstone_project/widgets/side_menu_widget.dart';
@@ -17,7 +16,6 @@ class MainScreen extends StatelessWidget {
           ? const SizedBox(
               width: 250,
               child: SideMenuWidget(),
-              
             )
           : null,
       endDrawer: Responsive.isMobile(context)
