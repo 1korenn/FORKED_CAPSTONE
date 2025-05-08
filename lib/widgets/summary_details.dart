@@ -12,9 +12,9 @@ class SummaryDetails extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          buildDetails('sensor value', '305'),
-          buildDetails('sensor value', '10983'),
-          buildDetails('sensor value', '111'),
+          buildDetails('ph', '0'),
+          buildDetails('moisture', '0'),
+          buildDetails('sensor value', '0'),
         ],
       ),
     ); 

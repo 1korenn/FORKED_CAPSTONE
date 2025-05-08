@@ -37,12 +37,12 @@ class _GraphScreenState extends State<GraphScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Graph Screen',
-          // style: TextStyle(fontSize: screenWidth * 0.02),
-        ),
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     'Graph Screen',
+      //     // style: TextStyle(fontSize: screenWidth * 0.02),
+      //   ),
+      // ),
       body: Padding(
         padding: EdgeInsets.all(screenWidth * 0.05),
         child: _renderedWidget,

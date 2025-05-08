@@ -8,6 +8,10 @@ ThemeData appTheme = ThemeData(
       color: Colors.white, 
       fontSize: 20, 
       fontWeight: FontWeight.bold,
+    
+    ),
+    iconTheme: const IconThemeData(
+      color: selectionColor, // Set IconButton color to white
     ),
   ),
   scaffoldBackgroundColor: backgroundColor, 
