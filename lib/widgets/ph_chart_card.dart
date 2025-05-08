@@ -78,7 +78,7 @@ class PhChartCard extends StatelessWidget {
                     TextStyle(color: Colors.white),
                   ),
                 )
-                .toList(),
+                .toList(), 
           ),
         ),
       ),

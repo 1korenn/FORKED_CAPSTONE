@@ -7,7 +7,7 @@ class FirebaseService {
     return _dbRef.child('sensorData/moisture').onValue.map((event) {
       final value = event.snapshot.value;
       return value != null ? value.toString() : 'Loading...';
-    });
+    }); 
   }
 
   Stream<String> getPhStream() {
