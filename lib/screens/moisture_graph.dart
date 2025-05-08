@@ -58,7 +58,6 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
       final timestamp = DateTime.now().millisecondsSinceEpoch.toDouble();
 
       setState(() {
-        // Check if the last value already exists to avoid duplication
         if (_moistureSpots.isEmpty || _moistureSpots.last.x != timestamp) {
           _moistureSpots.add(FlSpot(timestamp, moistureValue));
 
@@ -70,10 +69,10 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
           _moistureSpots.removeWhere((spot) =>
               _moistureSpots.indexOf(spot) !=
               _moistureSpots.lastIndexWhere((s) => s.x == spot.x));
-
-          _saveDataToLocalStorage();
-          _saveDataToFirebase(); // Ensure data is saved to Firebase
         }
+
+        _saveDataToLocalStorage();
+        _saveDataToFirebase(); // Uncomment if you want to sync to Firebase
       });
     });
   }
@@ -143,7 +142,8 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
                     DateTime.fromMillisecondsSinceEpoch(spot.x.toInt());
                 return ListTile(
                   title: Text('Time: ${date.hour}:${date.minute}'),
-                  subtitle: Text('Moisture: ${spot.y.toStringAsFixed(2)}'),
+                  subtitle:
+                      Text('Moisture: ${spot.y.toStringAsFixed(2)}'),
                 );
               },
             ),
@@ -161,31 +161,30 @@ class _MoistureGraphScreenState extends State<MoistureGraphScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    // Filter spots to include only one point per 10-minute interval
-    final filteredSpots = _moistureSpots.where((spot) {
-      final timestamp = DateTime.fromMillisecondsSinceEpoch(spot.x.toInt());
-      return timestamp.minute % 10 == 0 && timestamp.second == 0;
-    }).toList();
-
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Moisture Graph'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.history),
+            onPressed: _showHistory,
+          ),
+        ],
+      ),
       body: Padding(
-        padding: EdgeInsets.all(screenWidth * 0.05),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             Expanded(
-              child: filteredSpots.isEmpty
+              child: _moistureSpots.isEmpty
                   ? Center(
                       child: Text(
                         "No data available",
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.04,
-                          color: Colors.grey,
-                        ),
+                        style:
+                            TextStyle(fontSize: 16, color: Colors.grey),
                       ),
                     )
-                  : LineChartCard(spots: filteredSpots),
+                  : LineChartCard(spots: _moistureSpots),
             ),
           ],
         ),
