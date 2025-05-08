@@ -40,7 +40,7 @@ class _GraphScreenState extends State<GraphScreen> {
       appBar: AppBar(
         title: Text(
           'Graph Screen',
-          style: TextStyle(fontSize: screenWidth * 0.02),
+          // style: TextStyle(fontSize: screenWidth * 0.02),
         ),
       ),
       body: Padding(
